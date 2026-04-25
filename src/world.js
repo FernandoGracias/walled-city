@@ -8,6 +8,12 @@ export class WorldLoader {
   async _loadMaterials() {
     this.materials = {};
     try {
+      // Create environment texture for PBR reflections
+      this.scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
+        'https://assets.babylonjs.com/environments/environmentSpecular.env', this.scene
+      );
+      this.scene.environmentIntensity = 0.6;
+
       const resp = await fetch('data/materials.json');
       if (!resp.ok) { console.warn('No materials.json found, skipping materials'); return; }
       const registry = await resp.json();
@@ -31,6 +37,8 @@ export class WorldLoader {
         if (maps.opacity) {
           mat.opacityTexture = new BABYLON.Texture(maps.opacity, this.scene);
         }
+        mat.directIntensity = 1.5;
+        mat.environmentIntensity = 0.4;
         this.materials[name] = mat;
       }
       console.log(`Loaded ${Object.keys(this.materials).length} PBR materials`);
@@ -109,9 +117,10 @@ export class WorldLoader {
       if (glbRoot.rotationQuaternion) glbRoot.rotationQuaternion = null;
       glbRoot.parent = wrapper;
 
-      // Apply PBR material override if specified
+      // Apply PBR material override if specified (skip door meshes to preserve their look)
       if (obj.material && this.materials[obj.material]) {
         for (const mesh of wrapper.getChildMeshes()) {
+          if (mesh.name.includes('door')) continue;
           mesh.material = this.materials[obj.material];
         }
       }

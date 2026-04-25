@@ -14,10 +14,10 @@
     {"_comment": "=== Doorway on east wall leading to corridor               ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 2, "y": 0, "z": 2, "material": "concrete_dark"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 6, "y": 0, "z": 2, "material": "concrete_dark"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 2, "y": 0, "z": 6, "material": "concrete_dark"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 6, "y": 0, "z": 6, "material": "concrete_dark"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 2, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 6, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 2, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 6, "y": 0, "z": 6},
 
     {"_comment": "-- South wall (z=0, runs east-west, rot=0) --"},
     {"asset": "wall.gltf.glb", "x": 2, "y": 0, "z": 0, "rotation": 0, "material": "concrete_grey"},
@@ -34,7 +34,7 @@
     {"_comment": "-- East wall (x=8, runs north-south, rot=90) --"},
     {"_comment": "-- z=2 solid, z=6 doorway to corridor --"},
     {"asset": "wall.gltf.glb", "x": 8, "y": 0, "z": 2, "rotation": 90, "material": "concrete_grey"},
-    {"asset": "wall_doorway.glb", "x": 8, "y": 0, "z": 6, "rotation": 90, "material": "concrete_grey"},
+    {"asset": "wall_doorway.glb", "x": 8, "y": 0, "z": 6, "rotation": 90},
 
     {"_comment": "-- Entry Room Props --"},
     {"asset": "barrel_large.gltf.glb", "x": 1, "y": 0, "z": 1, "collision": true},
@@ -46,9 +46,9 @@
     {"_comment": "=== Connects Entry Room east to Main Hall west             ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 10, "y": 0, "z": 6, "material": "concrete_dark"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 14, "y": 0, "z": 6, "material": "concrete_dark"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 0, "z": 6, "material": "concrete_dark"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 10, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 14, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 0, "z": 6},
 
     {"_comment": "-- North wall of corridor (z=8, runs east-west) --"},
     {"asset": "wall.gltf.glb", "x": 10, "y": 0, "z": 8, "rotation": 0, "material": "concrete_stained"},
@@ -69,19 +69,19 @@
     {"_comment": "===           east to stairwell                           ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 2, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 2, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 2, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 6, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 6, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 6, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 10, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 10, "material": "tile_white"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 10, "material": "tile_white"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 10},
 
     {"_comment": "-- South wall (z=0) with doorway to side room --"},
     {"asset": "wall.gltf.glb", "x": 22, "y": 0, "z": 0, "rotation": 0, "material": "painted_green"},
-    {"asset": "wall_doorway.glb", "x": 26, "y": 0, "z": 0, "rotation": 0, "material": "painted_green"},
+    {"asset": "wall_doorway.glb", "x": 26, "y": 0, "z": 0, "rotation": 0},
     {"asset": "wall.gltf.glb", "x": 30, "y": 0, "z": 0, "rotation": 0, "material": "painted_green"},
 
     {"_comment": "-- North wall (z=12) --"},
@@ -91,12 +91,12 @@
 
     {"_comment": "-- West wall (x=20) with doorway from corridor --"},
     {"asset": "wall.gltf.glb", "x": 20, "y": 0, "z": 2, "rotation": 90, "material": "painted_green"},
-    {"asset": "wall_doorway.glb", "x": 20, "y": 0, "z": 6, "rotation": 90, "material": "painted_green"},
+    {"asset": "wall_doorway.glb", "x": 20, "y": 0, "z": 6, "rotation": 90},
     {"asset": "wall.gltf.glb", "x": 20, "y": 0, "z": 10, "rotation": 90, "material": "painted_green"},
 
     {"_comment": "-- East wall (x=32) with doorway to stairwell --"},
     {"asset": "wall.gltf.glb", "x": 32, "y": 0, "z": 2, "rotation": 90, "material": "painted_green"},
-    {"asset": "wall_doorway.glb", "x": 32, "y": 0, "z": 6, "rotation": 90, "material": "painted_green"},
+    {"asset": "wall_doorway.glb", "x": 32, "y": 0, "z": 6, "rotation": 90},
     {"asset": "wall.gltf.glb", "x": 32, "y": 0, "z": 10, "rotation": 90, "material": "painted_green"},
 
     {"_comment": "-- Main Hall Props --"},
@@ -113,10 +113,10 @@
     {"_comment": "=== Dead end with props                                   ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": -2, "material": "wood_floor"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": -2, "material": "wood_floor"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": -6, "material": "wood_floor"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": -6, "material": "wood_floor"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": -2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": -2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": -6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": -6},
 
     {"_comment": "-- South wall (z=-8) --"},
     {"asset": "wall.gltf.glb", "x": 22, "y": 0, "z": -8, "rotation": 0, "material": "plywood"},
@@ -142,9 +142,9 @@
     {"_comment": "=== Stairs go up toward +Z (north), top at z=10           ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 0, "z": 6, "material": "metal_grating"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 0, "z": 6, "material": "metal_grating"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 0, "z": 10, "material": "metal_grating"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 0, "z": 10},
 
     {"_comment": "-- South wall (z=4) --"},
     {"asset": "wall.gltf.glb", "x": 34, "y": 0, "z": 4, "rotation": 0, "material": "corrugated_metal"},
@@ -153,7 +153,7 @@
     {"_comment": "-- North wall (z=12) - REMOVED, player passes over when ascending stairs --"},
 
     {"_comment": "-- West wall (x=32) with doorway from main hall --"},
-    {"asset": "wall_doorway.glb", "x": 32, "y": 0, "z": 6, "rotation": 90, "material": "corrugated_metal"},
+    {"asset": "wall_doorway.glb", "x": 32, "y": 0, "z": 6, "rotation": 90},
     {"asset": "wall.gltf.glb", "x": 32, "y": 0, "z": 10, "rotation": 90, "material": "corrugated_metal"},
 
     {"_comment": "-- East wall (x=40) --"},
@@ -169,15 +169,15 @@
     {"_comment": "-- Stairs: approach from south (z=6), walk north, top at z=10 --"},
     {"_comment": "-- rot=0 means bottom at -Z, top at position Z --"},
     {"_comment": "-- Place at z=10 so top is at z=10, bottom at z=6 --"},
-    {"asset": "stairs.gltf.glb", "x": 38, "y": 0, "z": 10, "rotation": 0, "material": "metal_grating"},
+    {"asset": "stairs.gltf.glb", "x": 38, "y": 0, "z": 10, "rotation": 0},
 
     {"_comment": "============================================================"},
     {"_comment": "=== UPPER LANDING (2x1): x=32-40, z=10-14, y=4           ==="},
     {"_comment": "=== Tiles at z=12 so their south edge (z=10) meets stair top ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 4, "z": 12, "material": "concrete_stained"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 4, "z": 12, "material": "concrete_stained"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 4, "z": 12},
 
     {"_comment": "-- North wall (z=14) --"},
     {"asset": "wall.gltf.glb", "x": 34, "y": 4, "z": 14, "rotation": 0, "material": "painted_blue"},
@@ -187,7 +187,7 @@
     {"asset": "wall.gltf.glb", "x": 40, "y": 4, "z": 12, "rotation": 90, "material": "painted_blue"},
 
     {"_comment": "-- West wall (x=32) with doorway to upper corridor --"},
-    {"asset": "wall_doorway.glb", "x": 32, "y": 4, "z": 12, "rotation": 90, "material": "painted_blue"},
+    {"asset": "wall_doorway.glb", "x": 32, "y": 4, "z": 12, "rotation": 90},
 
     {"_comment": "-- South edge (z=10) is open for stairs --"},
 
@@ -198,8 +198,8 @@
     {"_comment": "=== UPPER CORRIDOR (1x2): x=24-32, z=10-14, y=4          ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 4, "z": 12, "material": "concrete_stained"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 4, "z": 12, "material": "concrete_stained"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 4, "z": 12},
 
     {"_comment": "-- North wall (z=14) --"},
     {"asset": "wall.gltf.glb", "x": 26, "y": 4, "z": 14, "rotation": 0, "material": "painted_blue"},
@@ -214,10 +214,10 @@
     {"_comment": "=== Window walls on south side                            ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 12, "material": "concrete_stained"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 12, "material": "concrete_stained"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 16, "material": "concrete_stained"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 16, "material": "concrete_stained"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 16},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 16},
 
     {"_comment": "-- South wall (z=10) with windows --"},
     {"asset": "wall_window_open.gltf.glb", "x": 18, "y": 4, "z": 10, "rotation": 0, "material": "painted_blue"},
@@ -232,7 +232,7 @@
     {"asset": "wall.gltf.glb", "x": 16, "y": 4, "z": 16, "rotation": 90, "material": "painted_blue"},
 
     {"_comment": "-- East wall (x=24) with doorway from corridor --"},
-    {"asset": "wall_doorway.glb", "x": 24, "y": 4, "z": 12, "rotation": 90, "material": "painted_blue"},
+    {"asset": "wall_doorway.glb", "x": 24, "y": 4, "z": 12, "rotation": 90},
     {"asset": "wall.gltf.glb", "x": 24, "y": 4, "z": 16, "rotation": 90, "material": "painted_blue"},
 
     {"_comment": "-- Upper Room Props --"},
