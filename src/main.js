@@ -77,7 +77,10 @@ async function main() {
     }
   });
 
-  engine.runRenderLoop(() => scene.render());
+  engine.runRenderLoop(() => {
+    worldLoader.updateStairs(camera);
+    scene.render();
+  });
   window.addEventListener('resize', () => engine.resize());
 }
 

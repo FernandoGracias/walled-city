@@ -101,7 +101,7 @@ export class WorldLoader {
     }
   }
 
-  /** Replace stair mesh collision with invisible flat platforms the camera walks up. */
+  /** Replace stair mesh collision with a per-frame Y adjustment system. */
   _addStairRamp(wrapper) {
     // Disable collision and physics on the visual stair meshes
     for (const mesh of wrapper.getChildMeshes()) {
@@ -114,29 +114,59 @@ export class WorldLoader {
       }
     }
 
-    // Create a series of thin flat platforms. Each one is slightly higher and
-    // further along Z than the last. The camera walks forward, gravity pulls
-    // it down onto each platform, effectively climbing the stairs.
-    // Stairs span ~4 units in Z (-4 to 0 local) and ~4 units in Y (0 to 4).
-    const numSteps = 16;
-    const totalRise = 4;
-    const totalRun = 4;
-    const stepRise = totalRise / numSteps;
-    const stepRun = totalRun / numSteps;
+    // Store stair zone info for the per-frame check.
+    // The stair bounding box in world space defines where the Y adjustment applies.
+    if (!this._stairZones) this._stairZones = [];
 
-    for (let i = 0; i < numSteps; i++) {
-      const platform = BABYLON.MeshBuilder.CreateBox(`stairPlat_${i}`, {
-        width: 4,
-        height: 0.05,
-        depth: stepRun + 0.05
-      }, this.scene);
+    const pos = wrapper.position;
+    const rotY = wrapper.rotation.y;
 
-      platform.position.x = 0;
-      platform.position.y = i * stepRise;
-      platform.position.z = -totalRun + (i + 0.5) * stepRun;
-      platform.isVisible = false;
-      platform.checkCollisions = true;
-      platform.parent = wrapper;
+    // Stairs in local space go from z=-4 (bottom, y=0) to z=0 (top, y=4).
+    // Transform the four corners to world space based on wrapper rotation.
+    const cos = Math.cos(rotY);
+    const sin = Math.sin(rotY);
+
+    // Local stair zone: x=-2 to 2, z=-4 to 0
+    // Progress along stairs: t = (localZ + 4) / 4, where t=0 is bottom, t=1 is top
+    this._stairZones.push({
+      pos, rotY, cos, sin,
+      // World-space bounding box (approximate, for quick AABB check)
+      localMinX: -2.5, localMaxX: 2.5,
+      localMinZ: -4.5, localMaxZ: 0.5,
+      rise: 4 // total Y rise
+    });
+  }
+
+  /**
+   * Call every frame to handle stair climbing. Adjusts camera Y when
+   * the player is within a stair zone based on their position along the stairs.
+   */
+  updateStairs(camera) {
+    if (!this._stairZones || this._stairZones.length === 0) return;
+
+    const cx = camera.position.x;
+    const cz = camera.position.z;
+    const eyeHeight = 1.8;
+
+    for (const zone of this._stairZones) {
+      // Transform camera position into stair local space
+      const dx = cx - zone.pos.x;
+      const dz = cz - zone.pos.z;
+      const localX = dx * zone.cos + dz * zone.sin;
+      const localZ = -dx * zone.sin + dz * zone.cos;
+
+      // Check if camera is within the stair zone
+      if (localX < zone.localMinX || localX > zone.localMaxX) continue;
+      if (localZ < zone.localMinZ || localZ > zone.localMaxZ) continue;
+
+      // Calculate progress along stairs (0 = bottom, 1 = top)
+      const t = Math.max(0, Math.min(1, (localZ - zone.localMinZ) / (zone.localMaxZ - zone.localMinZ)));
+      const targetY = zone.pos.y + t * zone.rise + eyeHeight;
+
+      // Only push camera UP (don't pull down — gravity handles that)
+      if (camera.position.y < targetY) {
+        camera.position.y = targetY;
+      }
     }
   }
 
