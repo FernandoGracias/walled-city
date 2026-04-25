@@ -175,7 +175,12 @@
 
     {"_comment": "============================================================"},
     {"_comment": "=== UPPER LANDING (2x1): x=32-40, z=12-16, y=4           ==="},
+    {"_comment": "=== Plus bridge tiles at z=10 to connect stairs to landing ==="},
     {"_comment": "============================================================"},
+
+    {"_comment": "-- Bridge floor tiles at top of stairs --"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 4, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 4, "z": 10},
 
     {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 4, "z": 14},
     {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 4, "z": 14},
@@ -190,8 +195,7 @@
     {"_comment": "-- West wall (x=32) with doorway to upper corridor --"},
     {"asset": "wall_doorway.glb", "x": 32, "y": 4, "z": 14, "rotation": 90},
 
-    {"_comment": "-- South wall (z=12) - partial, leave opening for stairs --"},
-    {"asset": "wall.gltf.glb", "x": 34, "y": 4, "z": 12, "rotation": 0},
+    {"_comment": "-- South wall (z=12) - removed to allow stair access --"},
 
     {"_comment": "============================================================"},
     {"_comment": "=== UPPER CORRIDOR (1x2): x=24-32, z=12-16, y=4          ==="},
