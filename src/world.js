@@ -114,33 +114,20 @@ export class WorldLoader {
       }
     }
 
-    // Build a ramp from triangles. The stairs go from bottom (-Z, y=0) to top (position, y~4).
-    // Stair bounding box: X=-2.5 to 2.5, Z=-4 to 0, Y=0 to ~5 (in local wrapper space).
-    const positions = [
-      // Left triangle (ramp surface)
-      -1.75, 0, -4,    -1.75, 4, 0,    -1.75, 0, 0,
-      // Right triangle
-       1.75, 0, -4,     1.75, 0, 0,     1.75, 4, 0,
-      // Ramp surface (two triangles forming a quad)
-      -1.75, 0, -4,     1.75, 0, -4,    1.75, 4, 0,
-      -1.75, 0, -4,     1.75, 4, 0,    -1.75, 4, 0,
-      // Bottom face
-      -1.75, 0, -4,    -1.75, 0, 0,     1.75, 0, 0,
-      -1.75, 0, -4,     1.75, 0, 0,     1.75, 0, -4,
-    ];
-    const indices = [];
-    for (let i = 0; i < positions.length / 3; i++) indices.push(i);
+    // Create a tilted box as a ramp. Stairs go from y=0 at -Z to y=4 at position Z.
+    // A box tilted ~45° creates a walkable slope.
+    // The box is thin (0.2) so it acts as a surface, not a solid block.
+    const rampLength = 5.6; // diagonal length for 4 rise over 4 run
+    const ramp = BABYLON.MeshBuilder.CreateBox('stairRamp', {
+      width: 4,       // X width (covers stair width)
+      height: 0.2,    // thin surface
+      depth: rampLength
+    }, this.scene);
 
-    const normals = [];
-    BABYLON.VertexData.ComputeNormals(positions, indices, normals);
-
-    const ramp = new BABYLON.Mesh('stairRamp', this.scene);
-    const vertexData = new BABYLON.VertexData();
-    vertexData.positions = positions;
-    vertexData.indices = indices;
-    vertexData.normals = normals;
-    vertexData.applyToMesh(ramp);
-
+    // Tilt the box so it slopes upward from -Z to +Z
+    ramp.rotation.x = -Math.atan2(4, 4); // ~45 degrees
+    ramp.position.y = 2;   // center height
+    ramp.position.z = -2;  // center depth
     ramp.isVisible = false;
     ramp.checkCollisions = true;
     ramp.parent = wrapper;
