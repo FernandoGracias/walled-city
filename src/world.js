@@ -132,11 +132,11 @@ export class WorldLoader {
       pos, rotY, cos, sin,
       localMinX: -3, localMaxX: 3,
       // Stairs go from localZ=-4 (bottom, y=0) to localZ=0 (top, y=rise).
-      // Extend past top to z=+3 to bridge gap to upper floor tiles.
+      // Upper floor tile edge is now at localZ=0, so minimal extension needed.
       stairStartZ: -4,  // where climb begins (bottom of stairs)
-      stairEndZ: 0,     // where climb ends (top of stairs)
+      stairEndZ: 0,     // where climb ends (top of stairs = floor edge)
       localMinZ: -5,    // zone entry (slightly before bottom step)
-      localMaxZ: 3,     // zone exit (past top, onto upper floor)
+      localMaxZ: 1,     // zone exit (just past top onto floor tile)
       rise: 4
     });
   }

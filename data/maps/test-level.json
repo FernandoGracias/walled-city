@@ -174,74 +174,70 @@
     {"asset": "stairs.gltf.glb", "x": 38, "y": 0, "z": 10, "rotation": 0},
 
     {"_comment": "============================================================"},
-    {"_comment": "=== UPPER LANDING (2x1): x=32-40, z=12-16, y=4           ==="},
-    {"_comment": "=== Plus bridge tiles at z=10 to connect stairs to landing ==="},
+    {"_comment": "=== UPPER LANDING (2x1): x=32-40, z=10-14, y=4           ==="},
+    {"_comment": "=== Tiles at z=12 so their south edge (z=10) meets stair top ==="},
     {"_comment": "============================================================"},
 
-    {"_comment": "-- Bridge floor tiles at top of stairs --"},
-    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 4, "z": 10},
-    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 4, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 4, "z": 12},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 34, "y": 4, "z": 14},
-    {"asset": "floor_tile_large.gltf.glb", "x": 38, "y": 4, "z": 14},
-
-    {"_comment": "-- North wall (z=16) --"},
-    {"asset": "wall.gltf.glb", "x": 34, "y": 4, "z": 16, "rotation": 0},
-    {"asset": "wall.gltf.glb", "x": 38, "y": 4, "z": 16, "rotation": 0},
+    {"_comment": "-- North wall (z=14) --"},
+    {"asset": "wall.gltf.glb", "x": 34, "y": 4, "z": 14, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 38, "y": 4, "z": 14, "rotation": 0},
 
     {"_comment": "-- East wall (x=40) --"},
-    {"asset": "wall.gltf.glb", "x": 40, "y": 4, "z": 14, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 40, "y": 4, "z": 12, "rotation": 90},
 
     {"_comment": "-- West wall (x=32) with doorway to upper corridor --"},
-    {"asset": "wall_doorway.glb", "x": 32, "y": 4, "z": 14, "rotation": 90},
+    {"asset": "wall_doorway.glb", "x": 32, "y": 4, "z": 12, "rotation": 90},
 
-    {"_comment": "-- South wall (z=12) - removed to allow stair access --"},
-
-    {"_comment": "============================================================"},
-    {"_comment": "=== UPPER CORRIDOR (1x2): x=24-32, z=12-16, y=4          ==="},
-    {"_comment": "============================================================"},
-
-    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 4, "z": 14},
-    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 4, "z": 14},
-
-    {"_comment": "-- North wall (z=16) --"},
-    {"asset": "wall.gltf.glb", "x": 26, "y": 4, "z": 16, "rotation": 0},
-    {"asset": "wall.gltf.glb", "x": 30, "y": 4, "z": 16, "rotation": 0},
-
-    {"_comment": "-- South wall (z=12) --"},
-    {"asset": "wall.gltf.glb", "x": 26, "y": 4, "z": 12, "rotation": 0},
-    {"asset": "wall.gltf.glb", "x": 30, "y": 4, "z": 12, "rotation": 0},
+    {"_comment": "-- South edge (z=10) is open for stairs --"},
 
     {"_comment": "============================================================"},
-    {"_comment": "=== UPPER ROOM (2x2): x=16-24, z=12-20, y=4              ==="},
+    {"_comment": "=== UPPER CORRIDOR (1x2): x=24-32, z=10-14, y=4          ==="},
+    {"_comment": "============================================================"},
+
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 4, "z": 12},
+
+    {"_comment": "-- North wall (z=14) --"},
+    {"asset": "wall.gltf.glb", "x": 26, "y": 4, "z": 14, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 30, "y": 4, "z": 14, "rotation": 0},
+
+    {"_comment": "-- South wall (z=10) --"},
+    {"asset": "wall.gltf.glb", "x": 26, "y": 4, "z": 10, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 30, "y": 4, "z": 10, "rotation": 0},
+
+    {"_comment": "============================================================"},
+    {"_comment": "=== UPPER ROOM (2x2): x=16-24, z=10-18, y=4              ==="},
     {"_comment": "=== Window walls on south side                            ==="},
     {"_comment": "============================================================"},
 
-    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 14},
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 14},
-    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 18},
-    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 18},
+    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 12},
+    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 4, "z": 16},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 4, "z": 16},
 
-    {"_comment": "-- South wall (z=12) with windows --"},
-    {"asset": "wall_window_open.gltf.glb", "x": 18, "y": 4, "z": 12, "rotation": 0},
-    {"asset": "wall_window_open.gltf.glb", "x": 22, "y": 4, "z": 12, "rotation": 0},
+    {"_comment": "-- South wall (z=10) with windows --"},
+    {"asset": "wall_window_open.gltf.glb", "x": 18, "y": 4, "z": 10, "rotation": 0},
+    {"asset": "wall_window_open.gltf.glb", "x": 22, "y": 4, "z": 10, "rotation": 0},
 
-    {"_comment": "-- North wall (z=20) --"},
-    {"asset": "wall.gltf.glb", "x": 18, "y": 4, "z": 20, "rotation": 0},
-    {"asset": "wall.gltf.glb", "x": 22, "y": 4, "z": 20, "rotation": 0},
+    {"_comment": "-- North wall (z=18) --"},
+    {"asset": "wall.gltf.glb", "x": 18, "y": 4, "z": 18, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 22, "y": 4, "z": 18, "rotation": 0},
 
     {"_comment": "-- West wall (x=16) --"},
-    {"asset": "wall.gltf.glb", "x": 16, "y": 4, "z": 14, "rotation": 90},
-    {"asset": "wall.gltf.glb", "x": 16, "y": 4, "z": 18, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 16, "y": 4, "z": 12, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 16, "y": 4, "z": 16, "rotation": 90},
 
     {"_comment": "-- East wall (x=24) with doorway from corridor --"},
-    {"asset": "wall_doorway.glb", "x": 24, "y": 4, "z": 14, "rotation": 90},
-    {"asset": "wall.gltf.glb", "x": 24, "y": 4, "z": 18, "rotation": 90},
+    {"asset": "wall_doorway.glb", "x": 24, "y": 4, "z": 12, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 24, "y": 4, "z": 16, "rotation": 90},
 
     {"_comment": "-- Upper Room Props --"},
-    {"asset": "chest_gold.glb", "x": 20, "y": 4, "z": 19, "rotation": 180, "collision": true},
-    {"asset": "banner_red.gltf.glb", "x": 18, "y": 6, "z": 19.7, "rotation": 180, "collision": false},
-    {"asset": "banner_red.gltf.glb", "x": 22, "y": 6, "z": 19.7, "rotation": 180, "collision": false},
-    {"asset": "torch.gltf.glb", "x": 16.3, "y": 6.5, "z": 16, "rotation": 90, "collision": false}
+    {"asset": "chest_gold.glb", "x": 20, "y": 4, "z": 17, "rotation": 180, "collision": true},
+    {"asset": "banner_red.gltf.glb", "x": 18, "y": 6, "z": 17.7, "rotation": 180, "collision": false},
+    {"asset": "banner_red.gltf.glb", "x": 22, "y": 6, "z": 17.7, "rotation": 180, "collision": false},
+    {"asset": "torch.gltf.glb", "x": 16.3, "y": 6.5, "z": 14, "rotation": 90, "collision": false}
   ]
 }
