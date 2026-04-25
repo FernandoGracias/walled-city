@@ -62,12 +62,20 @@ async function main() {
   // Load world
   const worldLoader = new WorldLoader(scene);
   await worldLoader.load('data/maps/test-level.json');
+  worldLoader.setupDoors();
 
   // Set camera to spawn point
   if (worldLoader.spawnPoint) {
     camera.position = worldLoader.spawnPoint.position.clone();
     camera.rotation.y = worldLoader.spawnPoint.rotation;
   }
+
+  // E key to interact with doors
+  scene.onKeyboardObservable.add((kbInfo) => {
+    if (kbInfo.type === BABYLON.KeyboardEventTypes.KEYDOWN && kbInfo.event.key === 'e') {
+      worldLoader.interactDoor();
+    }
+  });
 
   engine.runRenderLoop(() => scene.render());
   window.addEventListener('resize', () => engine.resize());
