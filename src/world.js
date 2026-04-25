@@ -101,7 +101,7 @@ export class WorldLoader {
     }
   }
 
-  /** Replace stair mesh collision with an invisible ramp the camera can walk up. */
+  /** Replace stair mesh collision with invisible flat platforms the camera walks up. */
   _addStairRamp(wrapper) {
     // Disable collision and physics on the visual stair meshes
     for (const mesh of wrapper.getChildMeshes()) {
@@ -114,23 +114,30 @@ export class WorldLoader {
       }
     }
 
-    // Create a tilted box as a ramp. Stairs go from y=0 at -Z to y=4 at position Z.
-    // A box tilted ~45° creates a walkable slope.
-    // The box is thin (0.2) so it acts as a surface, not a solid block.
-    const rampLength = 5.6; // diagonal length for 4 rise over 4 run
-    const ramp = BABYLON.MeshBuilder.CreateBox('stairRamp', {
-      width: 4,       // X width (covers stair width)
-      height: 0.2,    // thin surface
-      depth: rampLength
-    }, this.scene);
+    // Create a series of thin flat platforms. Each one is slightly higher and
+    // further along Z than the last. The camera walks forward, gravity pulls
+    // it down onto each platform, effectively climbing the stairs.
+    // Stairs span ~4 units in Z (-4 to 0 local) and ~4 units in Y (0 to 4).
+    const numSteps = 16;
+    const totalRise = 4;
+    const totalRun = 4;
+    const stepRise = totalRise / numSteps;
+    const stepRun = totalRun / numSteps;
 
-    // Tilt the box so it slopes upward from -Z to +Z
-    ramp.rotation.x = -Math.atan2(4, 4); // ~45 degrees
-    ramp.position.y = 2;   // center height
-    ramp.position.z = -2;  // center depth
-    ramp.isVisible = false;
-    ramp.checkCollisions = true;
-    ramp.parent = wrapper;
+    for (let i = 0; i < numSteps; i++) {
+      const platform = BABYLON.MeshBuilder.CreateBox(`stairPlat_${i}`, {
+        width: 4,
+        height: 0.05,
+        depth: stepRun + 0.05
+      }, this.scene);
+
+      platform.position.x = 0;
+      platform.position.y = i * stepRise;
+      platform.position.z = -totalRun + (i + 0.5) * stepRun;
+      platform.isVisible = false;
+      platform.checkCollisions = true;
+      platform.parent = wrapper;
+    }
   }
 
   /** Set up interactive doors. Call after load(). */
