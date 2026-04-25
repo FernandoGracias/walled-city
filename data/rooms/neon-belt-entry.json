@@ -1,0 +1,87 @@
+{
+  "id": "neon-belt-entry",
+  "name": "Neon Belt Entry Corridor",
+  "spawn": { "x": 0, "y": 1.7, "z": -1, "yaw": 0 },
+  "segments": [
+    {
+      "type": "straight",
+      "length": 12,
+      "width": 2.5,
+      "height": 4,
+      "props": [
+        { "type": "door_recess", "wall": "left", "position": 0.6 },
+        { "type": "conduit_box", "wall": "right", "position": 0.3 },
+        { "type": "ceiling_pipe", "position": 0.0, "length": 1.0, "offset": 0.8 }
+      ],
+      "lights": [
+        { "type": "fluorescent", "position": 0.17, "flicker": true },
+        { "type": "fluorescent", "position": 0.75, "flicker": false }
+      ],
+      "signs": [
+        { "type": "neon", "wall": "right", "position": 0.25, "color": "#ff1493", "width": 1.5, "height": 0.4 },
+        { "type": "neon", "wall": "left", "position": 0.58, "color": "#00ffff", "width": 1.2, "height": 0.3 }
+      ]
+    },
+    {
+      "type": "corner",
+      "direction": "right",
+      "width": 2.5,
+      "height": 4
+    },
+    {
+      "type": "straight",
+      "length": 8,
+      "width": 2.5,
+      "height": 4,
+      "props": [
+        { "type": "conduit_box", "wall": "left", "position": 0.4 },
+        { "type": "ceiling_pipe", "position": 0.0, "length": 1.0, "offset": -0.6 }
+      ],
+      "lights": [
+        { "type": "fluorescent", "position": 0.3, "flicker": false }
+      ],
+      "signs": [
+        { "type": "neon", "wall": "left", "position": 0.35, "color": "#39ff14", "width": 1.0, "height": 0.35 },
+        { "type": "neon", "wall": "right", "position": 0.7, "color": "#ff1493", "width": 1.8, "height": 0.5 }
+      ]
+    },
+    {
+      "type": "t_junction",
+      "width": 2.5,
+      "height": 4,
+      "branch_length": 4,
+      "branch_direction": "left",
+      "lights": [
+        { "type": "fluorescent", "position": 0.5, "flicker": true }
+      ]
+    },
+    {
+      "type": "straight",
+      "length": 8,
+      "width": 2.5,
+      "height": 4,
+      "props": [
+        { "type": "door_recess", "wall": "right", "position": 0.5 },
+        { "type": "ceiling_pipe", "position": 0.0, "length": 1.0, "offset": 0.7 }
+      ],
+      "lights": [
+        { "type": "fluorescent", "position": 0.5, "flicker": false }
+      ],
+      "signs": [
+        { "type": "neon", "wall": "left", "position": 0.4, "color": "#00ffff", "width": 1.4, "height": 0.4 }
+      ]
+    }
+  ],
+  "ambient": {
+    "fog_color": "#0a0a1a",
+    "fog_density": 0.06,
+    "ambient_light_color": "#111122",
+    "ambient_light_intensity": 0.3
+  },
+  "audio": {
+    "drip_points": [
+      { "segment": 0, "position": 0.42, "height": 3.5, "lateral": 0.5 },
+      { "segment": 2, "position": 0.6, "height": 3.5, "lateral": -0.3 }
+    ]
+  }
+}
