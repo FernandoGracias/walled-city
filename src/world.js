@@ -136,7 +136,7 @@ export class WorldLoader {
       stairStartZ: -4,  // where climb begins (bottom of stairs)
       stairEndZ: 0,     // where climb ends (top of stairs = floor edge)
       localMinZ: -5,    // zone entry (slightly before bottom step)
-      localMaxZ: 1,     // zone exit (just past top onto floor tile)
+      localMaxZ: 3,     // zone exit (well past top, onto floor tile)
       rise: 4
     });
   }
@@ -180,6 +180,13 @@ export class WorldLoader {
       // Only push camera UP (gravity handles falling)
       if (camera.position.y < targetY) {
         camera.position.y = targetY;
+      }
+
+      // At the stair top, nudge camera forward past the floor tile edge
+      // to prevent the ellipsoid from colliding with it as a wall
+      if (localZ > zone.stairEndZ - 0.3 && localZ < zone.stairEndZ + 0.3) {
+        camera.position.x += 0.08 * zone.sin;
+        camera.position.z += 0.08 * zone.cos;
       }
     }
   }
