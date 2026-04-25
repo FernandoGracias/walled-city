@@ -5,7 +5,42 @@ export class WorldLoader {
     this.spawnPoint = null;
   }
 
+  async _loadMaterials() {
+    this.materials = {};
+    try {
+      const resp = await fetch('data/materials.json');
+      if (!resp.ok) { console.warn('No materials.json found, skipping materials'); return; }
+      const registry = await resp.json();
+      for (const [name, maps] of Object.entries(registry)) {
+        const mat = new BABYLON.PBRMaterial(name, this.scene);
+        if (maps.color) mat.albedoTexture = new BABYLON.Texture(maps.color, this.scene);
+        if (maps.normal) mat.bumpTexture = new BABYLON.Texture(maps.normal, this.scene);
+        if (maps.roughness) {
+          mat.metallicTexture = new BABYLON.Texture(maps.roughness, this.scene);
+          mat.useRoughnessFromMetallicTextureGreen = true;
+          mat.useMetallnessFromMetallicTextureBlue = false;
+        }
+        if (maps.metalness) {
+          mat.metallic = 1.0;
+        } else {
+          mat.metallic = 0.0;
+        }
+        if (maps.ao) {
+          mat.ambientTexture = new BABYLON.Texture(maps.ao, this.scene);
+        }
+        if (maps.opacity) {
+          mat.opacityTexture = new BABYLON.Texture(maps.opacity, this.scene);
+        }
+        this.materials[name] = mat;
+      }
+      console.log(`Loaded ${Object.keys(this.materials).length} PBR materials`);
+    } catch (e) {
+      console.error('Failed to load materials:', e);
+    }
+  }
+
   async load(mapPath) {
+    await this._loadMaterials();
     const resp = await fetch(mapPath);
     if (!resp.ok) { console.error('Failed to load map:', mapPath); return; }
     const map = await resp.json();
@@ -73,6 +108,13 @@ export class WorldLoader {
       glbRoot.rotation = BABYLON.Vector3.Zero();
       if (glbRoot.rotationQuaternion) glbRoot.rotationQuaternion = null;
       glbRoot.parent = wrapper;
+
+      // Apply PBR material override if specified
+      if (obj.material && this.materials[obj.material]) {
+        for (const mesh of wrapper.getChildMeshes()) {
+          mesh.material = this.materials[obj.material];
+        }
+      }
 
       // Enable collisions on all child meshes
       const collision = obj.collision !== false;
@@ -151,23 +193,17 @@ export class WorldLoader {
   /** Call after load() to disable collision on floor tiles at stair exits. */
   fixStairExits() {
     if (!this._stairTops) return;
-    for (const stairTop of this._stairTops) {
-      for (const mesh of this.scene.meshes) {
-        if (!mesh.name.includes('floor')) continue;
-        if (!mesh.checkCollisions && !mesh.physicsBody) continue;
-        const p = mesh.getAbsolutePosition();
-        if (Math.abs(p.y - 4) > 1) continue;
-        // Only disable tiles whose center X is close to the stair X
-        // and whose center Z is exactly stairTop.z + 2 (the first tile past the stair)
-        const dx = Math.abs(p.x - stairTop.x);
-        const dz = Math.abs(p.z - (stairTop.z + 2));
-        if (dx < 6 && dz < 1) {
-          mesh.checkCollisions = false;
-          if (mesh.physicsBody) {
-            mesh.physicsBody.dispose();
-            mesh.physicsBody = null;
-          }
-        }
+    // Disable collision on ALL upper floor tiles. The stair zone Y adjustment
+    // and gravity handle keeping the player at the correct height. Floor tile
+    // edges act as walls that block horizontal movement.
+    for (const mesh of this.scene.meshes) {
+      if (!mesh.name.includes('floor')) continue;
+      const p = mesh.getAbsolutePosition();
+      if (p.y < 3) continue; // only upper floor tiles
+      mesh.checkCollisions = false;
+      if (mesh.physicsBody) {
+        mesh.physicsBody.dispose();
+        mesh.physicsBody = null;
       }
     }
   }

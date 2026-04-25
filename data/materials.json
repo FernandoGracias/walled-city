@@ -1,0 +1,65 @@
+{
+  "concrete_grey": {
+    "color": "assets/textures/concrete_grey/Concrete034_1K-JPG_Color.jpg",
+    "normal": "assets/textures/concrete_grey/Concrete034_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/concrete_grey/Concrete034_1K-JPG_Roughness.jpg"
+  },
+  "concrete_stained": {
+    "color": "assets/textures/concrete_stained/Concrete032_1K-JPG_Color.jpg",
+    "normal": "assets/textures/concrete_stained/Concrete032_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/concrete_stained/Concrete032_1K-JPG_Roughness.jpg",
+    "ao": "assets/textures/concrete_stained/Concrete032_1K-JPG_AmbientOcclusion.jpg"
+  },
+  "concrete_dark": {
+    "color": "assets/textures/concrete_dark/Concrete040_1K-JPG_Color.jpg",
+    "normal": "assets/textures/concrete_dark/Concrete040_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/concrete_dark/Concrete040_1K-JPG_Roughness.jpg",
+    "ao": "assets/textures/concrete_dark/Concrete040_1K-JPG_AmbientOcclusion.jpg"
+  },
+  "corrugated_metal": {
+    "color": "assets/textures/corrugated_metal/MetalPlates006_1K-JPG_Color.jpg",
+    "normal": "assets/textures/corrugated_metal/MetalPlates006_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/corrugated_metal/MetalPlates006_1K-JPG_Roughness.jpg",
+    "metalness": "assets/textures/corrugated_metal/MetalPlates006_1K-JPG_Metalness.jpg"
+  },
+  "metal_rusted": {
+    "color": "assets/textures/metal_rusted/Rust010_1K-JPG_Color.jpg",
+    "normal": "assets/textures/metal_rusted/Rust010_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/metal_rusted/Rust010_1K-JPG_Roughness.jpg",
+    "ao": "assets/textures/metal_rusted/Rust010_1K-JPG_AmbientOcclusion.jpg"
+  },
+  "metal_grating": {
+    "color": "assets/textures/metal_grating/MetalWalkway004_1K-JPG_Color.jpg",
+    "normal": "assets/textures/metal_grating/MetalWalkway004_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/metal_grating/MetalWalkway004_1K-JPG_Roughness.jpg",
+    "metalness": "assets/textures/metal_grating/MetalWalkway004_1K-JPG_Metalness.jpg",
+    "opacity": "assets/textures/metal_grating/MetalWalkway004_1K-JPG_Opacity.jpg"
+  },
+  "painted_blue": {
+    "color": "assets/textures/painted_blue/PaintedPlaster017_1K-JPG_Color.jpg",
+    "normal": "assets/textures/painted_blue/PaintedPlaster017_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/painted_blue/PaintedPlaster017_1K-JPG_Roughness.jpg"
+  },
+  "painted_green": {
+    "color": "assets/textures/painted_green/PaintedPlaster012_1K-JPG_Color.jpg",
+    "normal": "assets/textures/painted_green/PaintedPlaster012_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/painted_green/PaintedPlaster012_1K-JPG_Roughness.jpg",
+    "ao": "assets/textures/painted_green/PaintedPlaster012_1K-JPG_AmbientOcclusion.jpg"
+  },
+  "plywood": {
+    "color": "assets/textures/plywood/Wood051_1K-JPG_Color.jpg",
+    "normal": "assets/textures/plywood/Wood051_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/plywood/Wood051_1K-JPG_Roughness.jpg"
+  },
+  "tile_white": {
+    "color": "assets/textures/tile_white/Tiles074_1K-JPG_Color.jpg",
+    "normal": "assets/textures/tile_white/Tiles074_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/tile_white/Tiles074_1K-JPG_Roughness.jpg"
+  },
+  "wood_floor": {
+    "color": "assets/textures/wood_floor/WoodFloor040_1K-JPG_Color.jpg",
+    "normal": "assets/textures/wood_floor/WoodFloor040_1K-JPG_NormalGL.jpg",
+    "roughness": "assets/textures/wood_floor/WoodFloor040_1K-JPG_Roughness.jpg",
+    "ao": "assets/textures/wood_floor/WoodFloor040_1K-JPG_AmbientOcclusion.jpg"
+  }
+}
