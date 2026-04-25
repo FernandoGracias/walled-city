@@ -58,14 +58,25 @@ export class WorldLoader {
       if (rootNodes.length === 0) continue;
 
       const root = rootNodes[0];
-      root.position = new BABYLON.Vector3(obj.x || 0, obj.y || 0, obj.z || 0);
-      if (obj.rotation) root.rotation.y = obj.rotation * Math.PI / 180;
-      if (obj.scale) root.scaling = new BABYLON.Vector3(obj.scale, obj.scale, obj.scale);
+
+      // GLB root nodes have scaling.z = -1 (glTF right→left hand conversion).
+      // Rotating that node directly doesn't work because the Z-flip interferes.
+      // Fix: wrap in a parent TransformNode, move position/rotation there,
+      // and leave the GLB root as a child with only its Z-flip.
+      const wrapper = new BABYLON.TransformNode(`wrapper_${i}`, this.scene);
+      wrapper.position = new BABYLON.Vector3(obj.x || 0, obj.y || 0, obj.z || 0);
+      if (obj.rotation != null) wrapper.rotation.y = obj.rotation * Math.PI / 180;
+      if (obj.scale) wrapper.scaling = new BABYLON.Vector3(obj.scale, obj.scale, obj.scale);
+
+      root.position = BABYLON.Vector3.Zero();
+      root.rotation = BABYLON.Vector3.Zero();
+      if (root.rotationQuaternion) root.rotationQuaternion = null;
+      root.parent = wrapper;
 
       // Enable collisions on all child meshes
       const collision = obj.collision !== false;
       if (collision) {
-        this._enableCollisions(root);
+        this._enableCollisions(wrapper);
       }
     }
   }
