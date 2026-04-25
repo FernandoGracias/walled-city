@@ -193,19 +193,43 @@ export class WorldLoader {
   /** Call after load() to disable collision on floor tiles at stair exits. */
   fixStairExits() {
     if (!this._stairTops) return;
-    // Disable collision on ALL upper floor tiles. The stair zone Y adjustment
-    // and gravity handle keeping the player at the correct height. Floor tile
-    // edges act as walls that block horizontal movement.
+    // Upper floor tiles have edges that act as walls, blocking horizontal
+    // movement. Replace their collision with a single large invisible ground
+    // plane that has no edges.
+    const upperFloorTiles = [];
+    let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
+
     for (const mesh of this.scene.meshes) {
       if (!mesh.name.includes('floor')) continue;
       const p = mesh.getAbsolutePosition();
-      if (p.y < 3) continue; // only upper floor tiles
+      if (p.y < 3) continue;
+      mesh.computeWorldMatrix(true);
+      const bb = mesh.getBoundingInfo().boundingBox;
+      minX = Math.min(minX, bb.minimumWorld.x);
+      maxX = Math.max(maxX, bb.maximumWorld.x);
+      minZ = Math.min(minZ, bb.minimumWorld.z);
+      maxZ = Math.max(maxZ, bb.maximumWorld.z);
+      // Disable collision on the actual tile
       mesh.checkCollisions = false;
       if (mesh.physicsBody) {
         mesh.physicsBody.dispose();
         mesh.physicsBody = null;
       }
     }
+
+    if (minX === Infinity) return;
+
+    // Create one large invisible thin box covering all upper floor tiles
+    const width = maxX - minX + 2;
+    const depth = maxZ - minZ + 2;
+    const floor = BABYLON.MeshBuilder.CreateBox('upperFloor', {
+      width, height: 0.2, depth
+    }, this.scene);
+    floor.position.x = (minX + maxX) / 2;
+    floor.position.y = 4;
+    floor.position.z = (minZ + maxZ) / 2;
+    floor.isVisible = false;
+    floor.checkCollisions = true;
   }
 
   updateStairs(camera) {
