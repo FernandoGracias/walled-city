@@ -1,0 +1,129 @@
+{
+  "name": "Test Level",
+  "gridSize": 4.0,
+  "spawn": { "x": 2, "y": 1.8, "z": 2, "rotation": 0 },
+  "lighting": {
+    "ambient": "#333344",
+    "fogColor": "#0a0a1a",
+    "fogDensity": 0.03
+  },
+  "objects": [
+    {"_comment": "=== ROOM 1: Spawn Room (3x3 grid = 12x12 units, origin at 0,0) ==="},
+
+    {"_comment": "-- Floor tiles for Room 1 --"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 2, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 6, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 10, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 2, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 6, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 10, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 2, "y": 0, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 6, "y": 0, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 10, "y": 0, "z": 10},
+
+    {"_comment": "-- Room 1 walls: South wall (Z=-0.5, facing +Z) --"},
+    {"asset": "wall.gltf.glb", "x": 2, "y": 0, "z": -0.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 6, "y": 0, "z": -0.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 10, "y": 0, "z": -0.5, "rotation": 0},
+
+    {"_comment": "-- Room 1 walls: North wall (Z=12.5) --"},
+    {"asset": "wall.gltf.glb", "x": 2, "y": 0, "z": 12.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 6, "y": 0, "z": 12.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 10, "y": 0, "z": 12.5, "rotation": 0},
+
+    {"_comment": "-- Room 1 walls: West wall (X=-0.5, rotated 90) --"},
+    {"asset": "wall.gltf.glb", "x": -0.5, "y": 0, "z": 2, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": -0.5, "y": 0, "z": 6, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": -0.5, "y": 0, "z": 10, "rotation": 90},
+
+    {"_comment": "-- Room 1 walls: East wall (X=12.5) with doorway in middle --"},
+    {"asset": "wall.gltf.glb", "x": 12.5, "y": 0, "z": 2, "rotation": 90},
+    {"asset": "wall_doorway.glb", "x": 12.5, "y": 0, "z": 6, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 12.5, "y": 0, "z": 10, "rotation": 90},
+
+    {"_comment": "-- Room 1 props --"},
+    {"asset": "barrel_large.gltf.glb", "x": 1, "y": 0, "z": 1, "collision": true},
+    {"asset": "barrel_large.gltf.glb", "x": 1.8, "y": 0, "z": 1, "collision": true},
+    {"asset": "chest_gold.glb", "x": 10, "y": 0, "z": 11, "rotation": 180, "collision": true},
+    {"asset": "column.gltf.glb", "x": 4, "y": 0, "z": 4, "collision": true},
+    {"asset": "column.gltf.glb", "x": 8, "y": 0, "z": 4, "collision": true},
+    {"asset": "column.gltf.glb", "x": 4, "y": 0, "z": 8, "collision": true},
+    {"asset": "column.gltf.glb", "x": 8, "y": 0, "z": 8, "collision": true},
+
+    {"_comment": "=== CORRIDOR: Connects Room 1 east to Room 2 (2 tiles long) ==="},
+
+    {"_comment": "-- Corridor floor --"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 14, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 18, "y": 0, "z": 6},
+
+    {"_comment": "-- Corridor north wall --"},
+    {"asset": "wall.gltf.glb", "x": 14, "y": 0, "z": 8.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 18, "y": 0, "z": 8.5, "rotation": 0},
+
+    {"_comment": "-- Corridor south wall --"},
+    {"asset": "wall.gltf.glb", "x": 14, "y": 0, "z": 3.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 18, "y": 0, "z": 3.5, "rotation": 0},
+
+    {"_comment": "=== ROOM 2: Main Hall (3x2 grid = 12x8 units, starts at X=20) ==="},
+
+    {"_comment": "-- Room 2 floor --"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 2},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 22, "y": 0, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 0, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 0, "z": 10},
+
+    {"_comment": "-- Room 2 walls: West wall with doorway (corridor entrance) --"},
+    {"asset": "wall.gltf.glb", "x": 19.5, "y": 0, "z": 2, "rotation": 90},
+    {"asset": "wall_doorway.glb", "x": 19.5, "y": 0, "z": 6, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 19.5, "y": 0, "z": 10, "rotation": 90},
+
+    {"_comment": "-- Room 2 walls: East wall --"},
+    {"asset": "wall.gltf.glb", "x": 32.5, "y": 0, "z": 2, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 32.5, "y": 0, "z": 6, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 32.5, "y": 0, "z": 10, "rotation": 90},
+
+    {"_comment": "-- Room 2 walls: South wall --"},
+    {"asset": "wall.gltf.glb", "x": 22, "y": 0, "z": -0.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 26, "y": 0, "z": -0.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 30, "y": 0, "z": -0.5, "rotation": 0},
+
+    {"_comment": "-- Room 2 walls: North wall --"},
+    {"asset": "wall.gltf.glb", "x": 22, "y": 0, "z": 12.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 26, "y": 0, "z": 12.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 30, "y": 0, "z": 12.5, "rotation": 0},
+
+    {"_comment": "-- Room 2 stairs (going up from ground to Y=4) --"},
+    {"asset": "stairs.gltf.glb", "x": 30, "y": 0, "z": 8, "rotation": 0},
+
+    {"_comment": "-- Room 2 props --"},
+    {"asset": "shelves.gltf.glb", "x": 20.5, "y": 0, "z": 2, "rotation": 90},
+    {"asset": "barrel_large.gltf.glb", "x": 22, "y": 0, "z": 11, "collision": true},
+    {"asset": "banner_red.gltf.glb", "x": 26, "y": 2, "z": -0.3, "rotation": 0, "collision": false},
+
+    {"_comment": "=== ROOM 3: Upper Level (2x2 grid = 8x8, at Y=4, X=24, Z=4) ==="},
+
+    {"_comment": "-- Room 3 floor (at Y=4, above Room 2) --"},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 4, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 4, "z": 6},
+    {"asset": "floor_tile_large.gltf.glb", "x": 26, "y": 4, "z": 10},
+    {"asset": "floor_tile_large.gltf.glb", "x": 30, "y": 4, "z": 10},
+
+    {"_comment": "-- Room 3 walls --"},
+    {"asset": "wall.gltf.glb", "x": 26, "y": 4, "z": 12.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 30, "y": 4, "z": 12.5, "rotation": 0},
+    {"asset": "wall.gltf.glb", "x": 32.5, "y": 4, "z": 6, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 32.5, "y": 4, "z": 10, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 23.5, "y": 4, "z": 6, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 23.5, "y": 4, "z": 10, "rotation": 90},
+    {"asset": "wall.gltf.glb", "x": 26, "y": 4, "z": 3.5, "rotation": 0},
+
+    {"_comment": "-- Room 3 props --"},
+    {"asset": "chest_gold.glb", "x": 28, "y": 4, "z": 11, "rotation": 0, "collision": true},
+    {"asset": "column.gltf.glb", "x": 28, "y": 4, "z": 8, "collision": true}
+  ]
+}
