@@ -114,29 +114,11 @@ export class WorldLoader {
       }
     }
 
-    // Disable collision on floor tiles that overlap with the stair exit.
-    // The stair top is at the wrapper position. Floor tiles there block
-    // the camera from stepping onto the upper floor.
-    const stairTop = wrapper.position.clone();
-    for (const mesh of this.scene.meshes) {
-      if (!mesh.name.includes('floor')) continue;
-      const p = mesh.getAbsolutePosition();
-      // Find floor tiles at the upper level near the stair top
-      if (Math.abs(p.y - 4) > 1) continue;
-      const dx = Math.abs(p.x - stairTop.x);
-      const dz = Math.abs(p.z - (stairTop.z + 2)); // tile center is 2 units past stair top
-      if (dx < 5 && dz < 3) {
-        mesh.checkCollisions = false;
-        if (mesh.physicsBody) {
-          mesh.physicsBody.dispose();
-          mesh.physicsBody = null;
-        }
-      }
-    }
-
-    // Store stair zone info for the per-frame check.
-    // The stair bounding box in world space defines where the Y adjustment applies.
+    // Store stair info for later (floor tiles may not exist yet)
     if (!this._stairZones) this._stairZones = [];
+    if (!this._stairTops) this._stairTops = [];
+
+    this._stairTops.push(wrapper.position.clone());
 
     const pos = wrapper.position;
     const rotY = wrapper.rotation.y;
@@ -165,6 +147,28 @@ export class WorldLoader {
    * Call every frame to handle stair climbing. Adjusts camera Y when
    * the player is within a stair zone based on their position along the stairs.
    */
+  /** Call after load() to disable collision on floor tiles at stair exits. */
+  fixStairExits() {
+    if (!this._stairTops) return;
+    for (const stairTop of this._stairTops) {
+      for (const mesh of this.scene.meshes) {
+        if (!mesh.name.includes('floor')) continue;
+        if (!mesh.checkCollisions && !mesh.physicsBody) continue;
+        const p = mesh.getAbsolutePosition();
+        if (Math.abs(p.y - 4) > 1) continue;
+        const dx = Math.abs(p.x - stairTop.x);
+        const dz = Math.abs(p.z - (stairTop.z + 2));
+        if (dx < 5 && dz < 3) {
+          mesh.checkCollisions = false;
+          if (mesh.physicsBody) {
+            mesh.physicsBody.dispose();
+            mesh.physicsBody = null;
+          }
+        }
+      }
+    }
+  }
+
   updateStairs(camera) {
     if (!this._stairZones || this._stairZones.length === 0) return;
 

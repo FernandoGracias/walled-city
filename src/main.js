@@ -62,6 +62,7 @@ async function main() {
   // Load world
   const worldLoader = new WorldLoader(scene);
   await worldLoader.load('data/maps/test-level.json');
+  worldLoader.fixStairExits();
   worldLoader.setupDoors();
 
   // Set camera to spawn point
