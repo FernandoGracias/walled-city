@@ -101,11 +101,31 @@ export class WorldLoader {
     }
   }
 
-  /** Replace stair mesh collision with a per-frame Y adjustment system. */
+  /** Set up stair zones and disable blocking collision at stair exits. */
   _addStairRamp(wrapper) {
     // Disable collision and physics on the visual stair meshes
     for (const mesh of wrapper.getChildMeshes()) {
       if (mesh.name.includes('stair')) {
+        mesh.checkCollisions = false;
+        if (mesh.physicsBody) {
+          mesh.physicsBody.dispose();
+          mesh.physicsBody = null;
+        }
+      }
+    }
+
+    // Disable collision on floor tiles that overlap with the stair exit.
+    // The stair top is at the wrapper position. Floor tiles there block
+    // the camera from stepping onto the upper floor.
+    const stairTop = wrapper.position.clone();
+    for (const mesh of this.scene.meshes) {
+      if (!mesh.name.includes('floor')) continue;
+      const p = mesh.getAbsolutePosition();
+      // Find floor tiles at the upper level near the stair top
+      if (Math.abs(p.y - 4) > 1) continue;
+      const dx = Math.abs(p.x - stairTop.x);
+      const dz = Math.abs(p.z - (stairTop.z + 2)); // tile center is 2 units past stair top
+      if (dx < 5 && dz < 3) {
         mesh.checkCollisions = false;
         if (mesh.physicsBody) {
           mesh.physicsBody.dispose();
@@ -180,13 +200,6 @@ export class WorldLoader {
       // Only push camera UP (gravity handles falling)
       if (camera.position.y < targetY) {
         camera.position.y = targetY;
-      }
-
-      // At the stair top, nudge camera forward past the floor tile edge
-      // to prevent the ellipsoid from colliding with it as a wall
-      if (localZ > zone.stairEndZ - 0.3 && localZ < zone.stairEndZ + 0.3) {
-        camera.position.x += 0.08 * zone.sin;
-        camera.position.z += 0.08 * zone.cos;
       }
     }
   }
