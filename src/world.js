@@ -84,6 +84,9 @@ export class WorldLoader {
   _enableCollisions(node) {
     if (node.getChildMeshes) {
       for (const mesh of node.getChildMeshes()) {
+        // Skip door meshes inside doorways — they block the opening
+        if (mesh.name.includes('doorway_door')) continue;
+
         mesh.checkCollisions = true;
         // Add static physics body for Havok
         try {
