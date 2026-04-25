@@ -78,6 +78,11 @@ export class WorldLoader {
       if (collision) {
         this._enableCollisions(wrapper);
       }
+
+      // For stairs, replace mesh collision with an invisible ramp
+      if (obj.asset && obj.asset.includes('stairs') && collision) {
+        this._addStairRamp(wrapper);
+      }
     }
   }
 
@@ -94,6 +99,51 @@ export class WorldLoader {
         }
       }
     }
+  }
+
+  /** Replace stair mesh collision with an invisible ramp the camera can walk up. */
+  _addStairRamp(wrapper) {
+    // Disable collision and physics on the visual stair meshes
+    for (const mesh of wrapper.getChildMeshes()) {
+      if (mesh.name.includes('stair')) {
+        mesh.checkCollisions = false;
+        if (mesh.physicsBody) {
+          mesh.physicsBody.dispose();
+          mesh.physicsBody = null;
+        }
+      }
+    }
+
+    // Build a ramp from triangles. The stairs go from bottom (-Z, y=0) to top (position, y~4).
+    // Stair bounding box: X=-2.5 to 2.5, Z=-4 to 0, Y=0 to ~5 (in local wrapper space).
+    const positions = [
+      // Left triangle (ramp surface)
+      -1.75, 0, -4,    -1.75, 4, 0,    -1.75, 0, 0,
+      // Right triangle
+       1.75, 0, -4,     1.75, 0, 0,     1.75, 4, 0,
+      // Ramp surface (two triangles forming a quad)
+      -1.75, 0, -4,     1.75, 0, -4,    1.75, 4, 0,
+      -1.75, 0, -4,     1.75, 4, 0,    -1.75, 4, 0,
+      // Bottom face
+      -1.75, 0, -4,    -1.75, 0, 0,     1.75, 0, 0,
+      -1.75, 0, -4,     1.75, 0, 0,     1.75, 0, -4,
+    ];
+    const indices = [];
+    for (let i = 0; i < positions.length / 3; i++) indices.push(i);
+
+    const normals = [];
+    BABYLON.VertexData.ComputeNormals(positions, indices, normals);
+
+    const ramp = new BABYLON.Mesh('stairRamp', this.scene);
+    const vertexData = new BABYLON.VertexData();
+    vertexData.positions = positions;
+    vertexData.indices = indices;
+    vertexData.normals = normals;
+    vertexData.applyToMesh(ramp);
+
+    ramp.isVisible = false;
+    ramp.checkCollisions = true;
+    ramp.parent = wrapper;
   }
 
   /** Set up interactive doors. Call after load(). */
