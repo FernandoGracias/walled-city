@@ -156,9 +156,11 @@ export class WorldLoader {
         if (!mesh.checkCollisions && !mesh.physicsBody) continue;
         const p = mesh.getAbsolutePosition();
         if (Math.abs(p.y - 4) > 1) continue;
+        // Only disable tiles whose center X is close to the stair X
+        // and whose center Z is exactly stairTop.z + 2 (the first tile past the stair)
         const dx = Math.abs(p.x - stairTop.x);
         const dz = Math.abs(p.z - (stairTop.z + 2));
-        if (dx < 5 && dz < 3) {
+        if (dx < 3 && dz < 1) {
           mesh.checkCollisions = false;
           if (mesh.physicsBody) {
             mesh.physicsBody.dispose();

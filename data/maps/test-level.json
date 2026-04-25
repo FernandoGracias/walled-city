@@ -191,8 +191,8 @@
 
     {"_comment": "-- South edge (z=10) is open for stairs --"},
 
-    {"_comment": "-- Railing along stair opening (half-height wall) --"},
-    {"asset": "wall_half.gltf.glb", "x": 34, "y": 4, "z": 10, "rotation": 0, "collision": false},
+    {"_comment": "-- Railing along stair opening (half-height barrier) --"},
+    {"asset": "barrier_half.gltf.glb", "x": 34, "y": 4, "z": 10, "rotation": 0, "collision": false},
 
     {"_comment": "============================================================"},
     {"_comment": "=== UPPER CORRIDOR (1x2): x=24-32, z=10-14, y=4          ==="},
