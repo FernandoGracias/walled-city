@@ -132,7 +132,7 @@ export class WorldLoader {
       pos, rotY, cos, sin,
       // World-space bounding box (approximate, for quick AABB check)
       localMinX: -2.5, localMaxX: 2.5,
-      localMinZ: -4.5, localMaxZ: 0.5,
+      localMinZ: -5.5, localMaxZ: 2.0,
       rise: 4 // total Y rise
     });
   }
