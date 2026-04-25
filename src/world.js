@@ -130,10 +130,14 @@ export class WorldLoader {
     // Progress along stairs: t = (localZ + 4) / 4, where t=0 is bottom, t=1 is top
     this._stairZones.push({
       pos, rotY, cos, sin,
-      // World-space bounding box (approximate, for quick AABB check)
-      localMinX: -2.5, localMaxX: 2.5,
-      localMinZ: -5.5, localMaxZ: 2.0,
-      rise: 4 // total Y rise
+      localMinX: -3, localMaxX: 3,
+      // Stairs go from localZ=-4 (bottom, y=0) to localZ=0 (top, y=rise).
+      // Extend past top to z=+3 to bridge gap to upper floor tiles.
+      stairStartZ: -4,  // where climb begins (bottom of stairs)
+      stairEndZ: 0,     // where climb ends (top of stairs)
+      localMinZ: -5,    // zone entry (slightly before bottom step)
+      localMaxZ: 3,     // zone exit (past top, onto upper floor)
+      rise: 4
     });
   }
 
@@ -159,11 +163,21 @@ export class WorldLoader {
       if (localX < zone.localMinX || localX > zone.localMaxX) continue;
       if (localZ < zone.localMinZ || localZ > zone.localMaxZ) continue;
 
-      // Calculate progress along stairs (0 = bottom, 1 = top)
-      const t = Math.max(0, Math.min(1, (localZ - zone.localMinZ) / (zone.localMaxZ - zone.localMinZ)));
-      const targetY = zone.pos.y + t * zone.rise + eyeHeight;
+      // Calculate height based on position along the actual stair geometry
+      let targetY;
+      if (localZ <= zone.stairStartZ) {
+        // Before the stairs — ground level
+        targetY = zone.pos.y + eyeHeight;
+      } else if (localZ >= zone.stairEndZ) {
+        // Past the top of stairs — hold at full height (bridges gap to upper floor)
+        targetY = zone.pos.y + zone.rise + eyeHeight;
+      } else {
+        // On the stairs — interpolate
+        const t = (localZ - zone.stairStartZ) / (zone.stairEndZ - zone.stairStartZ);
+        targetY = zone.pos.y + t * zone.rise + eyeHeight;
+      }
 
-      // Only push camera UP (don't pull down — gravity handles that)
+      // Only push camera UP (gravity handles falling)
       if (camera.position.y < targetY) {
         camera.position.y = targetY;
       }
