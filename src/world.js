@@ -67,6 +67,7 @@ export class WorldLoader {
       wrapper.position = new BABYLON.Vector3(obj.x || 0, obj.y || 0, obj.z || 0);
       if (obj.rotation != null) wrapper.rotation.y = obj.rotation * Math.PI / 180;
       if (obj.scale) wrapper.scaling = new BABYLON.Vector3(obj.scale, obj.scale, obj.scale);
+      if (obj.scaleY != null) wrapper.scaling.y = obj.scaleY;
 
       glbRoot.position = BABYLON.Vector3.Zero();
       glbRoot.rotation = BABYLON.Vector3.Zero();
@@ -160,7 +161,7 @@ export class WorldLoader {
         // and whose center Z is exactly stairTop.z + 2 (the first tile past the stair)
         const dx = Math.abs(p.x - stairTop.x);
         const dz = Math.abs(p.z - (stairTop.z + 2));
-        if (dx < 3 && dz < 1) {
+        if (dx < 6 && dz < 1) {
           mesh.checkCollisions = false;
           if (mesh.physicsBody) {
             mesh.physicsBody.dispose();
